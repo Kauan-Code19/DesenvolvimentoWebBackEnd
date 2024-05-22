@@ -6,12 +6,12 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class userDTO {
+public class UserDTO {
     private String name;
     private String email;
     private String password;
 
-    public userDTO(UserEntity userEntity) {
+    public UserDTO(UserEntity userEntity) {
         name = userEntity.getName();
         email = userEntity.getEmail();
         password = userEntity.getPassword();
