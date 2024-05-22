@@ -10,12 +10,10 @@ public class UserResponseDTO {
     private String id;
     private String name;
     private String email;
-    private String password;
 
     public UserResponseDTO(UserEntity userEntity) {
         id = userEntity.getId();
         name = userEntity.getName();
         email = userEntity.getEmail();
-        password = userEntity.getPassword();
     }
 }
