@@ -6,8 +6,14 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class UserDTO {
+public class UserResponseDTO {
     private String name;
     private String email;
     private String password;
+
+    public UserResponseDTO(UserEntity userEntity) {
+        name = userEntity.getName();
+        email = userEntity.getEmail();
+        password = userEntity.getPassword();
+    }
 }
