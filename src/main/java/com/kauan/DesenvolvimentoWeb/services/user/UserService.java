@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -28,5 +31,15 @@ public class UserService {
         userEntity = userRepository.save(userEntity);
 
         return new UserResponseDTO(userEntity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserResponseDTO> getAllUsers() {
+        List<UserEntity> userEntities =  userRepository.findAll();
+
+        List<UserResponseDTO> userResponseDTOS = userEntities.stream()
+                .map(UserResponseDTO::new).toList();
+
+        return userResponseDTOS;
     }
 }
