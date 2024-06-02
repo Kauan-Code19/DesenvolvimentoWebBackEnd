@@ -6,6 +6,7 @@ import com.kauan.DesenvolvimentoWeb.entities.user.UserEntity;
 import com.kauan.DesenvolvimentoWeb.repositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -41,5 +42,10 @@ public class UserService {
                 .map(UserResponseDTO::new).toList();
 
         return userResponseDTOS;
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void deleteUser(String userId) {
+        userRepository.deleteById(userId);
     }
 }
