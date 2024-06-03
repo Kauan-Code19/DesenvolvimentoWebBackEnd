@@ -36,6 +36,19 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
+    public UserResponseDTO getUser(String userId) {
+        Optional<UserEntity> optionalUserEntityuserEntity = userRepository.findById(userId);
+
+        if (optionalUserEntityuserEntity.isPresent()) {
+            UserEntity userEntity = optionalUserEntityuserEntity.get();
+
+            return new UserResponseDTO(userEntity);
+        } else {
+            throw new EntityNotFoundException("User not found with id " + userId);
+        }
+    }
+
+    @Transactional(readOnly = true)
     public List<UserResponseDTO> getAllUsers() {
         List<UserEntity> userEntities =  userRepository.findAll();
 

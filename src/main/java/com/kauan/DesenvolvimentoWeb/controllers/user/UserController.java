@@ -28,6 +28,13 @@ public class UserController {
         return ResponseEntity.created(uri).body(userResponseDTO);
     }
 
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserResponseDTO> getUser(@PathVariable String userId) {
+        UserResponseDTO userResponseDTO = userService.getUser(userId);
+
+        return ResponseEntity.ok(userResponseDTO);
+    }
+
     @GetMapping("all")
     public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
         List<UserResponseDTO> userResponseDTO = userService.getAllUsers();
